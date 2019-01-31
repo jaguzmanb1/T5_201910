@@ -1,6 +1,7 @@
 package api;
 
-import model.data_structures.LinkedList;
+import model.data_structures.IQueue;
+import model.vo.VODaylyStatistic;
 import model.vo.VOMovingViolations;
 
 /**
@@ -14,10 +15,8 @@ public interface IMovingViolationsManager {
 	 */
 	void loadMovingViolations(String movingViolationsFile);
 	
-	public LinkedList <VOMovingViolations> getMovingViolationsByViolationCode (String violationCode);
+	public IQueue <VODaylyStatistic> getDaylyStatistics ();	
 	
-	
-	public LinkedList <VOMovingViolations> getMovingViolationsByAccident(String accidentIndicator);
-
+	public IQueue <VOMovingViolations> nLastAccidents(int n);
 	
 }

@@ -3,7 +3,8 @@ package view;
 import java.util.Scanner;
 
 import controller.Controller;
-import model.data_structures.ILinkedList;
+import model.data_structures.IQueue;
+import model.vo.VODaylyStatistic;
 import model.vo.VOMovingViolations;
 
 public class MovingViolationsManagerView 
@@ -12,6 +13,8 @@ public class MovingViolationsManagerView
 	{
 		Scanner sc = new Scanner(System.in);
 		boolean fin=false;
+		Controller controller = new Controller();
+		
 		while(!fin)
 		{
 			printMenu();
@@ -21,28 +24,33 @@ public class MovingViolationsManagerView
 			switch(option)
 			{
 				case 1:
-					Controller.loadMovingViolations();
+					controller.loadMovingViolations();
 					break;
 					
 				case 2:
-					System.out.println("Ingrese el código de la infracción:");
-					String violationCode = sc.next();
-					LinkedList<VOMovingViolations> violationsByCodeList = Controller.getMovingViolationsByViolationCode (violationCode);
-					System.out.println("Se encontraron "+ violationsByCodeList.getSize() + " elementos");
-					for (VOMovingViolations violations : violationsByCodeList) 
+					
+					IQueue<VODaylyStatistic> dailyStatistics = controller.getDailyStatistics();
+					System.out.println("Se encontraron "+ dailyStatistics.size() + " elementos");
+					for (VODaylyStatistic dayStatistic : dailyStatistics) 
 					{
-						System.out.println(violations.objectId() + " " + violations.getLocation() + " " + violations.getTicketIssueDate()+ " " + violations.getTotalPaid() + " " + violations.getAccidentIndicator()+ " " + violations.getViolationDescription());;
+						//TODO
+						System.out.println("2018-01-01 - accidentes:	100,	infracciones:	200,	multas totales:	$10,000  " );;
 					}
 					break;
 					
 				case 3:
-					System.out.println("Ingrese el indicador de Accidente que quiere consulta (No/Yes):");
-					String accidentIndicator = sc.next();
-					LinkedList<VOMovingViolations> violationsByAccidentsList = Controller.getMovingViolationsByAccident (accidentIndicator);
-					System.out.println("Se encontraron "+ violationsByAccidentsList.getSize() + " elementos");
-					for (VOMovingViolations violations : violationsByAccidentsList) 
+					System.out.println("Ingrese el nÃºmero de infracciones a buscar");
+					int n = Integer.parseInt(sc.next());
+
+					
+					IQueue<VOMovingViolations> violations = controller.nLastAccidents(n);
+					System.out.println("Se encontraron "+ violations.size() + " elementos");
+					for (VOMovingViolations violation : violations) 
 					{
-						System.out.println(violations.objectId() + " " + violations.getLocation() + " " + violations.getTicketIssueDate()+ " " + violations.getTotalPaid() + " " + violations.getAccidentIndicator()+ " " + violations.getViolationDescription());;
+						System.out.println(violation.objectId() + " " 
+											+ violation.getTicketIssueDate() + " " 
+											+ violation.getLocation()+ " " 
+											+ violation.getViolationDescription());
 					}
 					break;
 											
@@ -58,10 +66,10 @@ public class MovingViolationsManagerView
 		System.out.println("---------ISIS 1206 - Estructuras de datos----------");
 		System.out.println("---------------------Taller 2----------------------");
 		System.out.println("1. Cree una nueva coleccion de infracciones en movimiento");
-		System.out.println("2. Dar listado de infracciones reportadas dado un código de infracción");
-		System.out.println("3. Dar listado de infracciones reportadas de acuerdo a si hay o no accidente reportado");
+		System.out.println("2. Dar estadisticas diarias de las infracciones");
+		System.out.println("3. Dar ultimos n infracciones que terminaron en accidente");
 		System.out.println("4. Salir");
-		System.out.println("Digite el número de opción para ejecutar la tarea, luego presione enter: (Ej., 1):");
+		System.out.println("Digite el nï¿½mero de opciï¿½n para ejecutar la tarea, luego presione enter: (Ej., 1):");
 		
 	}
 }

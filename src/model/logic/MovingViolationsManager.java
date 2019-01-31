@@ -1,8 +1,9 @@
 package model.logic;
 
 import api.IMovingViolationsManager;
+import model.vo.VODaylyStatistic;
 import model.vo.VOMovingViolations;
-import model.data_structures.LinkedList;
+import model.data_structures.IQueue;
 
 public class MovingViolationsManager implements IMovingViolationsManager {
 
@@ -12,16 +13,15 @@ public class MovingViolationsManager implements IMovingViolationsManager {
 		
 	}
 
-		
 	@Override
-	public LinkedList <VOMovingViolations> getMovingViolationsByViolationCode (String violationCode) {
+	public IQueue <VODaylyStatistic> getDaylyStatistics () {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public LinkedList <VOMovingViolations> getMovingViolationsByAccident(String accidentIndicator) {
-		// TODO Auto-generated method stub
+	public IQueue <VOMovingViolations> nLastAccidents(int n) {
+		// TODO
 		return null;
 	}	
 

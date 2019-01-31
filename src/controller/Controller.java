@@ -1,8 +1,9 @@
 package controller;
 
 import api.IMovingViolationsManager;
-import model.data_structures.LinkedList;
+import model.data_structures.IQueue;
 import model.logic.MovingViolationsManager;
+import model.vo.VODaylyStatistic;
 import model.vo.VOMovingViolations;
 
 public class Controller {
@@ -10,18 +11,21 @@ public class Controller {
 	/**
 	 * Reference to the services manager
 	 */
-	@SuppressWarnings("unused")
-	private static IMovingViolationsManager  manager = new MovingViolationsManager();
+	private IMovingViolationsManager  manager;
+ 
+	public Controller() {
+		manager = new MovingViolationsManager();
+	}
 	
-	public static void loadMovingViolations() {
+	public void loadMovingViolations() {
 		
 	}
 	
-	public static LinkedList <VOMovingViolations> getMovingViolationsByViolationCode (String violationCode) {
+	public IQueue <VODaylyStatistic> getDailyStatistics () {
 		return null;
 	}
 	
-	public static LinkedList <VOMovingViolations> getMovingViolationsByAccident(String accidentIndicator) {
+	public IQueue <VOMovingViolations> nLastAccidents(int n) {
 		return null;
 	}
 }

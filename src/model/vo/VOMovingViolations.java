@@ -20,7 +20,7 @@ public class VOMovingViolations {
 	 */
 	public String getLocation() {
 		// TODO Auto-generated method stub
-		return 0;
+		return "";
 	}
 
 	/**
@@ -36,7 +36,7 @@ public class VOMovingViolations {
 	 */
 	public int getTotalPaid() {
 		// TODO Auto-generated method stub
-		return "";
+		return 0;
 	}
 	
 	/**
