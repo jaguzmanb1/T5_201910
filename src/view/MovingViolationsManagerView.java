@@ -64,7 +64,7 @@ public class MovingViolationsManagerView
 
 	private static void printMenu() {
 		System.out.println("---------ISIS 1206 - Estructuras de datos----------");
-		System.out.println("---------------------Taller 2----------------------");
+		System.out.println("---------------------Taller 3----------------------");
 		System.out.println("1. Cree una nueva coleccion de infracciones en movimiento");
 		System.out.println("2. Dar estadisticas diarias de las infracciones");
 		System.out.println("3. Dar ultimos n infracciones que terminaron en accidente");
