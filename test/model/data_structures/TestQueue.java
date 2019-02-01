@@ -1,14 +1,16 @@
 package model.data_structures;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.fail;
 
 import org.junit.Before;
 import org.junit.Test;
 
-public class TestQueue {
+import junit.framework.TestCase;
+
+public class TestQueue extends TestCase{
 
 	@Before
-	public void iniciaion() {
+	public void setUp() throws Exception{
 		System.out.println("Codigo de iniciacion");
 	}
 	

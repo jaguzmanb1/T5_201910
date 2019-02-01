@@ -1,6 +1,7 @@
 package api;
 
 import model.data_structures.IQueue;
+import model.data_structures.IStack;
 import model.vo.VODaylyStatistic;
 import model.vo.VOMovingViolations;
 
@@ -17,6 +18,6 @@ public interface IMovingViolationsManager {
 	
 	public IQueue <VODaylyStatistic> getDaylyStatistics ();	
 	
-	public IQueue <VOMovingViolations> nLastAccidents(int n);
+	public IStack <VOMovingViolations> nLastAccidents(int n);
 	
 }

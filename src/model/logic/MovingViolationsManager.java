@@ -4,6 +4,7 @@ import api.IMovingViolationsManager;
 import model.vo.VODaylyStatistic;
 import model.vo.VOMovingViolations;
 import model.data_structures.IQueue;
+import model.data_structures.IStack;
 
 public class MovingViolationsManager implements IMovingViolationsManager {
 
@@ -20,7 +21,7 @@ public class MovingViolationsManager implements IMovingViolationsManager {
 	}
 
 	@Override
-	public IQueue <VOMovingViolations> nLastAccidents(int n) {
+	public IStack <VOMovingViolations> nLastAccidents(int n) {
 		// TODO
 		return null;
 	}	

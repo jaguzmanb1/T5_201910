@@ -2,6 +2,7 @@ package controller;
 
 import api.IMovingViolationsManager;
 import model.data_structures.IQueue;
+import model.data_structures.IStack;
 import model.logic.MovingViolationsManager;
 import model.vo.VODaylyStatistic;
 import model.vo.VOMovingViolations;
@@ -25,7 +26,7 @@ public class Controller {
 		return null;
 	}
 	
-	public IQueue <VOMovingViolations> nLastAccidents(int n) {
+	public IStack <VOMovingViolations> nLastAccidents(int n) {
 		return null;
 	}
 }

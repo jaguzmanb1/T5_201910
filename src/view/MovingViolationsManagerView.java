@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import controller.Controller;
 import model.data_structures.IQueue;
+import model.data_structures.IStack;
 import model.vo.VODaylyStatistic;
 import model.vo.VOMovingViolations;
 
@@ -43,7 +44,7 @@ public class MovingViolationsManagerView
 					int n = Integer.parseInt(sc.next());
 
 					
-					IQueue<VOMovingViolations> violations = controller.nLastAccidents(n);
+					IStack<VOMovingViolations> violations = controller.nLastAccidents(n);
 					System.out.println("Se encontraron "+ violations.size() + " elementos");
 					for (VOMovingViolations violation : violations) 
 					{
