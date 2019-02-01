@@ -14,7 +14,7 @@ public interface IMovingViolationsManager {
 	 * Method to load the Moving Violations of the STS
 	 * @param movingViolationsFile - path to the file 
 	 */
-	void loadMovingViolations(String movingViolationsFile);
+	void loadMovingViolations(String[] movingViolationsFiles);
 	
 	public IQueue <VODaylyStatistic> getDaylyStatistics ();	
 	

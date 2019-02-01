@@ -9,7 +9,7 @@ import model.data_structures.IStack;
 public class MovingViolationsManager implements IMovingViolationsManager {
 
 	
-	public void loadMovingViolations(String movingViolationsFile){
+	public void loadMovingViolations(String[] movingViolationsFiles){
 		// TODO Auto-generated method stub
 		
 	}
