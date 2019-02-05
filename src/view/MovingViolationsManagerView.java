@@ -1,8 +1,5 @@
 package view;
 
-import java.util.Scanner;
-
-import controller.Controller;
 import model.data_structures.IQueue;
 import model.data_structures.IStack;
 import model.vo.VODaylyStatistic;
@@ -14,60 +11,7 @@ public class MovingViolationsManagerView
 		
 	}
 	
-	public void run() 
-	{
-		Scanner sc = new Scanner(System.in);
-		boolean fin=false;
-		Controller controller = new Controller();
-		
-		while(!fin)
-		{
-			printMenu();
-			
-			int option = sc.nextInt();
-			
-			switch(option)
-			{
-				case 1:
-					controller.loadMovingViolations();
-					break;
-					
-				case 2:
-					
-					IQueue<VODaylyStatistic> dailyStatistics = controller.getDailyStatistics();
-					System.out.println("Se encontraron "+ dailyStatistics.size() + " elementos");
-					for (VODaylyStatistic dayStatistic : dailyStatistics) 
-					{
-						//TODO
-						System.out.println("2018-01-01 - accidentes:	100,	infracciones:	200,	multas totales:	$10,000  " );;
-					}
-					break;
-					
-				case 3:
-					System.out.println("Ingrese el número de infracciones a buscar");
-					int n = Integer.parseInt(sc.next());
-
-					
-					IStack<VOMovingViolations> violations = controller.nLastAccidents(n);
-					System.out.println("Se encontraron "+ violations.size() + " elementos");
-					for (VOMovingViolations violation : violations) 
-					{
-						System.out.println(violation.objectId() + " " 
-											+ violation.getTicketIssueDate() + " " 
-											+ violation.getLocation()+ " " 
-											+ violation.getViolationDescription());
-					}
-					break;
-											
-				case 4:	
-					fin=true;
-					sc.close();
-					break;
-			}
-		}
-	}
-
-	private void printMenu() {
+	public void printMenu() {
 		System.out.println("---------ISIS 1206 - Estructuras de datos----------");
 		System.out.println("---------------------Taller 3----------------------");
 		System.out.println("1. Cree una nueva coleccion de infracciones en movimiento");
@@ -76,5 +20,29 @@ public class MovingViolationsManagerView
 		System.out.println("4. Salir");
 		System.out.println("Digite el n�mero de opci�n para ejecutar la tarea, luego presione enter: (Ej., 1):");
 		
+	}
+	
+	public void showDailyStatistics(IQueue<VODaylyStatistic> dailyStatistics) {
+		System.out.println("Se encontraron "+ dailyStatistics.size() + " elementos");
+		for (VODaylyStatistic dayStatistic : dailyStatistics) 
+		{
+			//TODO
+			System.out.println("2018-01-01 - accidentes:	100,	infracciones:	200,	multas totales:	$10,000  " );;
+		}
+	}
+	
+	public void showMovingViolations(IStack<VOMovingViolations> violations) {
+		System.out.println("Se encontraron "+ violations.size() + " elementos");
+		for (VOMovingViolations violation : violations) 
+		{
+			System.out.println(violation.objectId() + " " 
+								+ violation.getTicketIssueDate() + " " 
+								+ violation.getLocation()+ " " 
+								+ violation.getViolationDescription());
+		}
+	}
+	
+	public void showMensage(String mensaje) {
+		System.out.println(mensaje);
 	}
 }
