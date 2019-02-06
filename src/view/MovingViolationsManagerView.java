@@ -22,7 +22,7 @@ public class MovingViolationsManagerView
 		
 	}
 	
-	public void showDailyStatistics(IQueue<VODaylyStatistic> dailyStatistics) {
+	public void printDailyStatistics(IQueue<VODaylyStatistic> dailyStatistics) {
 		System.out.println("Se encontraron "+ dailyStatistics.size() + " elementos");
 		for (VODaylyStatistic dayStatistic : dailyStatistics) 
 		{
@@ -31,7 +31,7 @@ public class MovingViolationsManagerView
 		}
 	}
 	
-	public void showMovingViolations(IStack<VOMovingViolations> violations) {
+	public void printMovingViolations(IStack<VOMovingViolations> violations) {
 		System.out.println("Se encontraron "+ violations.size() + " elementos");
 		for (VOMovingViolations violation : violations) 
 		{
@@ -42,7 +42,7 @@ public class MovingViolationsManagerView
 		}
 	}
 	
-	public void showMensage(String mensaje) {
+	public void printMensage(String mensaje) {
 		System.out.println(mensaje);
 	}
 }

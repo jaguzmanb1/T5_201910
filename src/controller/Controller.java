@@ -12,8 +12,23 @@ public class Controller {
  
 	private MovingViolationsManagerView view;
 	
+	/**
+	 * Cola donde se van a cargar los datos de los archivos
+	 */
+	private IQueue<VOMovingViolations> movingViolationsQueue;
+	
+	/**
+	 * Pila donde se van a cargar los datos de los archivos
+	 */
+	private IStack<VOMovingViolations> movingViolationsStack;
+
+
 	public Controller() {
 		view = new MovingViolationsManagerView();
+		
+		//TODO, inicializar la pila y la cola
+		movingViolationsQueue = null;
+		movingViolationsStack = null;
 	}
 	
 	public void run() {
@@ -34,15 +49,15 @@ public class Controller {
 					
 				case 2:
 					IQueue<VODaylyStatistic> dailyStatistics = this.getDailyStatistics();
-					view.showDailyStatistics(dailyStatistics);
+					view.printDailyStatistics(dailyStatistics);
 					break;
 					
 				case 3:
-					view.showMensage("Ingrese el número de infracciones a buscar");
-					int n = Integer.parseInt(sc.next());
+					view.printMensage("Ingrese el número de infracciones a buscar");
+					int n = sc.nextInt();
 
 					IStack<VOMovingViolations> violations = this.nLastAccidents(n);
-					view.showMovingViolations(violations);
+					view.printMovingViolations(violations);
 					break;
 											
 				case 4:	
@@ -55,8 +70,6 @@ public class Controller {
 
 	
 
-	
-	
 	public void loadMovingViolations() {
 		// TODO
 	}
