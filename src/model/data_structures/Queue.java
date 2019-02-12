@@ -1,22 +1,27 @@
 package model.data_structures;
 
-public class Queue <T>{
+public class Queue<T> {
+	
 	private Objeto<T> primero;
 
-	
-	public Queue(){
-		primero=null;
+
+	public Queue()
+	{	
+		primero = null;
 
 	}
-public boolean isEmpty(){
-	boolean x=false;
-	if(primero==null){
-		x=true;
+	
+	
+	
+	public boolean isEmpty(){
+		boolean x=false;
+		if(primero==null){
+			x=true;
+		}
+		return x;
+
 	}
-	return x;
-	
-}
-	
+
 	/**
 	 * Retorna el numero de elementos contenidos
 	 * @return el numero de elemntos contenidos
@@ -36,7 +41,7 @@ public boolean isEmpty(){
 		}
 		return cantidad;
 	}
-	
+
 	/**
 	 * Inserta un nuevo elemento en la Cola
 	 * @param t el nuevo elemento que se va ha agregar
@@ -44,14 +49,14 @@ public boolean isEmpty(){
 	public void enqueue(T t){
 		if(primero==null){
 			primero=new Objeto<T>(t);
-			
+
 		}
 		else{
 			primero.añadirAlFinal(t);
 		}
-		
+
 	}
-	
+
 	/**
 	 * Quita y retorna el elemento agregado menos recientemente
 	 * @return el elemento agregado menos recientemente
