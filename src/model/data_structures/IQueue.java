@@ -18,12 +18,15 @@ public interface IQueue<T> extends Iterable<T>{
 	 * Inserta un nuevo elemento en la Cola
 	 * @param t el nuevo elemento que se va ha agregar
 	 */
-	public void enqueue(T t);
 	
 	/**
 	 * Quita y retorna el elemento agregado menos recientemente
 	 * @return el elemento agregado menos recientemente
 	 */
 	public T dequeue();
+
+	public void enqueue(T elemento);
+
+
 	
 }
