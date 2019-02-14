@@ -116,7 +116,7 @@ public class Controller {
 	public IQueue <VODaylyStatistic> getDailyStatistics () {
 		ArrayList<VODaylyStatistic> arreglosEstadisticas = new ArrayList<>();
 		IQueue<VODaylyStatistic> dailyStatistics = new Queue<VODaylyStatistic>();
-
+		
 		String fecha;
 		String fechaRecortada;
 
