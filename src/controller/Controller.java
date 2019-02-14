@@ -115,47 +115,45 @@ public class Controller {
 
 	public IQueue <VODaylyStatistic> getDailyStatistics () {
 		ArrayList<VODaylyStatistic> arreglosEstadisticas = new ArrayList<>();
-		// TODO
 		IQueue<VODaylyStatistic> dailyStatistics = new Queue<VODaylyStatistic>();
-		ArrayList<String> fechas = new ArrayList<>();
+
+		String fecha;
+		String fechaRecortada;
 
 		for (VOMovingViolations violation : movingViolationsQueue){
-			String fecha = violation.getTicketIssueDate();
-			String fechaRecortada = fecha.substring(0, Math.min(fecha.length(), 8));
-			view.printMensage(fechaRecortada);
-			if (fechas.size() == 0){
-				fechas.add(fechaRecortada);
+			fecha = violation.getTicketIssueDate();
+			fechaRecortada = fecha.substring(0, Math.min(fecha.length(), 10));
+			if (arreglosEstadisticas.size() == 0){
+				arreglosEstadisticas.add(new VODaylyStatistic(fechaRecortada));
 			}
 			else{
 				Boolean esta = false;
-				for ( int i = 0 ; i < fechas.size(); i ++ ){
-					if (fechas.get(i).equals(fechaRecortada)){
+				for ( int i = 0 ; i < arreglosEstadisticas.size(); i ++ ){
+					if (arreglosEstadisticas.get(i).darFecha().contains(fechaRecortada)){
 						esta = true;
 					}
 				}
-
 				if (esta == false){
-					fechas.add(fechaRecortada);
+					arreglosEstadisticas.add(new VODaylyStatistic(fechaRecortada));
 				}
 			}
 		}
-		
-		for (int i = 0 ; i < fechas.size() ; i ++ ){
-			arreglosEstadisticas.add(new VODaylyStatistic(fechas.get(i)));
-			while (movingViolationsQueue.iterator().hasNext()){
-				String fecha = movingViolationsQueue.iterator().next().getTicketIssueDate();
-				String fechaRecortada = fecha.substring(0, Math.min(fecha.length(), 8));
-				
-				if(fechaRecortada.equals(fechas.get(i))){
-					arreglosEstadisticas.get(i).agregarReporte( movingViolationsQueue.iterator().next());
+
+		for (VOMovingViolations violation : movingViolationsQueue){
+			fecha = violation.getTicketIssueDate();
+			fechaRecortada = fecha.substring(0, Math.min(fecha.length(), 10));
+
+			for (int i = 0 ; i < arreglosEstadisticas.size() ; i ++ ){
+				if (arreglosEstadisticas.get(i).darFecha().contains(fechaRecortada)){
+					arreglosEstadisticas.get(i).agregarReporte( violation );
 				}
 			}
 		}
-		
+
 		for (int i = 0 ; i < arreglosEstadisticas.size() ; i ++ ){
 			dailyStatistics.enqueue(arreglosEstadisticas.get(i));
 		}
-		
+
 		return dailyStatistics;
 	}
 

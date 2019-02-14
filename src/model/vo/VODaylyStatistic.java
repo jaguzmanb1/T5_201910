@@ -1,6 +1,6 @@
 package model.vo;
 
-import java.util.ArrayList;
+import model.data_structures.Queue;
 
 public class VODaylyStatistic {
 	
@@ -8,11 +8,11 @@ public class VODaylyStatistic {
 	
 	int NumeroAccidentes;
 	
-	ArrayList <VOMovingViolations> violaciones;
+	Queue <VOMovingViolations> violaciones;
 	
 	public VODaylyStatistic(String pFecha) {
 		fecha = pFecha;
-		violaciones = new ArrayList <VOMovingViolations>();
+		violaciones = new Queue<VOMovingViolations>();
 	}
 	
 	public String darFecha() {
@@ -22,13 +22,13 @@ public class VODaylyStatistic {
 
 	public void agregarReporte(VOMovingViolations violacion) {
 		// TODO Auto-generated method stub
-		violaciones.add(violacion);
+		violaciones.enqueue(violacion);
 	}
 	
 	public int darNumeroAccidentes(){
 		int accidentes = 0;
-		for (int i = 0 ; i < violaciones.size() ; i ++ ){
-			if (violaciones.get(i).getAccidentIndicator().equals("YES")){
+		for (VOMovingViolations violation : violaciones) {
+			if (violation.getAccidentIndicator().equals("Yes")){
 				accidentes++;
 			}
 		}
@@ -38,14 +38,14 @@ public class VODaylyStatistic {
 	
 	public int darSumaTotal(){
 		int accidentes = 0;
-		for (int i = 0 ; i < violaciones.size() ; i ++ ){
-			accidentes += violaciones.get(i).getTotalPaid();
+		for (VOMovingViolations violation : violaciones) {
+			accidentes += violation.getTotalPaid();
 		}
 		
 		return accidentes;
 	}
 	
 	public int darNumeroInfracciones(){
-		return violaciones.size();
+		return violaciones.darLongitud();
 	}
 }
