@@ -18,7 +18,7 @@ public class MovingViolationsManagerView
 		System.out.println("2. Dar estadisticas diarias de las infracciones");
 		System.out.println("3. Dar ultimos n infracciones que terminaron en accidente");
 		System.out.println("4. Salir");
-		System.out.println("Digite el n�mero de opci�n para ejecutar la tarea, luego presione enter: (Ej., 1):");
+		System.out.println("Digite el numero de opcion para ejecutar la tarea, luego presione enter: (Ej., 1):");
 		
 	}
 	
@@ -27,7 +27,7 @@ public class MovingViolationsManagerView
 		for (VODaylyStatistic dayStatistic : dailyStatistics) 
 		{
 			//TODO
-			System.out.println("2018-01-01 - accidentes:	100,	infracciones:	200,	multas totales:	$10,000  " );;
+			System.out.println(dayStatistic.darFecha() + " - accidentes:	" + dayStatistic.darNumeroAccidentes() + ",	infracciones:	" + dayStatistic.darNumeroInfracciones() + ",	multas totales:	"+ dayStatistic.darSumaTotal() );
 		}
 	}
 	

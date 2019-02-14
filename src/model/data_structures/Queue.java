@@ -160,8 +160,9 @@ public class Queue<T> implements Serializable, IQueue<T>
 		return resp;
 	}
 
+
 	@Override
-	public Iterator iterator() {
+	public Iterator<T> iterator() {
 		return  new Iterator<T>() {
 
 			private NodoCola<T> current = primero;

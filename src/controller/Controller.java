@@ -1,9 +1,11 @@
 package controller;
 
 import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
-
+import java.util.Set;
 
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
@@ -61,7 +63,7 @@ public class Controller {
 				break;
 
 			case 3:
-				view.printMensage("Ingrese el número de infracciones a buscar");
+				view.printMensage("Ingrese el numero de infracciones a buscar");
 				int n = sc.nextInt();
 
 				IStack<VOMovingViolations> violations = this.nLastAccidents(n);
@@ -82,35 +84,79 @@ public class Controller {
 		try{
 			FileReader n1 = new FileReader("./data/Moving_Violations_Issued_In_February_2018_ordered.csv");
 			CSVReader n2 = new CSVReaderBuilder(n1).withSkipLines(1).build();
-			
+
 			List <String[]> info = n2.readAll();
-			
+
 			movingViolationsStack = new Stack<VOMovingViolations>();
-			
-			for(int i=0;i<info.size();i++){
+
+			for( int i = 1 ; i < info.size() ; i++ ){
 				movingViolationsStack.push(new VOMovingViolations(Integer.parseInt(info.get(i)[0]), info.get(i)[2], info.get(i)[13],Integer.parseInt(info.get(i)[9]), info.get(i)[12], info.get(i)[15]));
 			}
-			
+
 			FileReader n3= new FileReader("./data/Moving_Violations_Issued_In_January_2018_ordered.csv");
 			CSVReader n4 = new CSVReaderBuilder(n3).build();
 			List <String[]> info2 = n4.readAll();
-			Queue<VOMovingViolations> Que = new Queue<VOMovingViolations>();
+			movingViolationsQueue = new Queue<VOMovingViolations>();
+
+			for ( int i = 1 ; i<info.size() ; i++ ){
+				movingViolationsQueue.enqueue(new VOMovingViolations(Integer.parseInt(info2.get(i)[0]), info2.get(i)[2], info2.get(i)[13],Integer.parseInt(info2.get(i)[9]), info2.get(i)[12], info2.get(i)[15]));
+			}
+
+
+			n1.close();
+			n2.close();
+			n3.close();
+			n4.close();
 		}
 		catch(Exception e){
-
+			view.printMensage(e.getMessage());
 		}
-		// TODO
 	}
 
 	public IQueue <VODaylyStatistic> getDailyStatistics () {
+		ArrayList<VODaylyStatistic> arreglosEstadisticas = new ArrayList<>();
 		// TODO
-		IQueue<VODaylyStatistic> dailyStatistics;
-		
-		while (movingViolationsStack.iterator().hasNext()){
-			dailyStatistics.enqueue(movingViolationsStack.iterator().next());
+		IQueue<VODaylyStatistic> dailyStatistics = new Queue<VODaylyStatistic>();
+		ArrayList<String> fechas = new ArrayList<>();
 
+		for (VOMovingViolations violation : movingViolationsQueue){
+			String fecha = violation.getTicketIssueDate();
+			String fechaRecortada = fecha.substring(0, Math.min(fecha.length(), 8));
+			view.printMensage(fechaRecortada);
+			if (fechas.size() == 0){
+				fechas.add(fechaRecortada);
+			}
+			else{
+				Boolean esta = false;
+				for ( int i = 0 ; i < fechas.size(); i ++ ){
+					if (fechas.get(i).equals(fechaRecortada)){
+						esta = true;
+					}
+				}
+
+				if (esta == false){
+					fechas.add(fechaRecortada);
+				}
+			}
 		}
-		return null;
+		
+		for (int i = 0 ; i < fechas.size() ; i ++ ){
+			arreglosEstadisticas.add(new VODaylyStatistic(fechas.get(i)));
+			while (movingViolationsQueue.iterator().hasNext()){
+				String fecha = movingViolationsQueue.iterator().next().getTicketIssueDate();
+				String fechaRecortada = fecha.substring(0, Math.min(fecha.length(), 8));
+				
+				if(fechaRecortada.equals(fechas.get(i))){
+					arreglosEstadisticas.get(i).agregarReporte( movingViolationsQueue.iterator().next());
+				}
+			}
+		}
+		
+		for (int i = 0 ; i < arreglosEstadisticas.size() ; i ++ ){
+			dailyStatistics.enqueue(arreglosEstadisticas.get(i));
+		}
+		
+		return dailyStatistics;
 	}
 
 	public IStack <VOMovingViolations> nLastAccidents(int n) {

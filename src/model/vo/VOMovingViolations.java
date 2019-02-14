@@ -11,8 +11,8 @@ public class VOMovingViolations {
 	int totalPaid;
 	String accidentIndicator;
 	String violationDescription;
-	
-public VOMovingViolations(int pId, String pLocation, String pTicketIssueDate, int pTotalPaid, String pAccidentIndicator,String pViolationDescription){
+
+	public VOMovingViolations(int pId, String pLocation, String pTicketIssueDate, int pTotalPaid, String pAccidentIndicator,String pViolationDescription){
 		id=pId;
 		location=pLocation;
 		ticketIssueDate=pTicketIssueDate;
@@ -27,8 +27,8 @@ public VOMovingViolations(int pId, String pLocation, String pTicketIssueDate, in
 		// TODO Auto-generated method stub
 		return id;
 	}	
-	
-	
+
+
 	/**
 	 * @return location - Dirección en formato de texto.
 	 */
@@ -44,7 +44,7 @@ public VOMovingViolations(int pId, String pLocation, String pTicketIssueDate, in
 		// TODO Auto-generated method stub
 		return ticketIssueDate;
 	}
-	
+
 	/**
 	 * @return totalPaid - Cuanto dinero efectivamente pagó el que recibió la infracción en USD.
 	 */
@@ -52,7 +52,7 @@ public VOMovingViolations(int pId, String pLocation, String pTicketIssueDate, in
 		// TODO Auto-generated method stub
 		return totalPaid;
 	}
-	
+
 	/**
 	 * @return accidentIndicator - Si hubo un accidente o no.
 	 */
@@ -60,7 +60,7 @@ public VOMovingViolations(int pId, String pLocation, String pTicketIssueDate, in
 		// TODO Auto-generated method stub
 		return accidentIndicator;
 	}
-		
+
 	/**
 	 * @return description - Descripción textual de la infracción.
 	 */
