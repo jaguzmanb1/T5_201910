@@ -18,6 +18,7 @@ public class MovingViolationsManagerView
 		System.out.println("2. Dar estadisticas diarias de las infracciones");
 		System.out.println("3. Dar ultimos n infracciones que terminaron en accidente");
 		System.out.println("4. Salir");
+		System.out.println("5. Dar tiempos muestreo");
 		System.out.println("Digite el numero de opcion para ejecutar la tarea, luego presione enter: (Ej., 1):");
 		
 	}

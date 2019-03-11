@@ -3,22 +3,24 @@ package model.vo;
 /**
  * Representation of a Trip object
  */
-public class VOMovingViolations {
+public class VOMovingViolations implements Comparable<VOMovingViolations> {
 
-	int id;
-	String location;
-	String ticketIssueDate;
-	int totalPaid;
-	String accidentIndicator;
-	String violationDescription;
-
-	public VOMovingViolations(int pId, String pLocation, String pTicketIssueDate, int pTotalPaid, String pAccidentIndicator,String pViolationDescription){
+	private int id;
+	private String location;
+	private String ticketIssueDate;
+	private int totalPaid;
+	private String accidentIndicator;
+	private String violationDescription;
+	private String addressId;
+	
+	public VOMovingViolations(int pId, String pLocation, String pTicketIssueDate, int pTotalPaid, String pAccidentIndicator,String pViolationDescription,String  pAddressId){
 		id=pId;
 		location=pLocation;
 		ticketIssueDate=pTicketIssueDate;
 		totalPaid=pTotalPaid;
 		accidentIndicator=pAccidentIndicator;
 		violationDescription=pViolationDescription;
+		addressId=pAddressId;
 	}
 	/**
 	 * @return id - Identificador único de la infracción
@@ -67,5 +69,13 @@ public class VOMovingViolations {
 	public String  getViolationDescription() {
 		// TODO Auto-generated method stub
 		return "";
+	}
+	public String getAddressId(){
+		return addressId;
+	}
+	@Override
+	public int compareTo(VOMovingViolations o) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

@@ -48,6 +48,7 @@ public class Queue<T> implements Serializable, IQueue<T>
 	/**
 	 * Número de elementos de la cola
 	 */
+	
 	protected int numElems;
 
 	// -----------------------------------------------------------------
